@@ -4,3 +4,4 @@ plotly
 streamlit
 matplotlib
 folium
+streamlit-folium
