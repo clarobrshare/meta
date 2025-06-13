@@ -105,6 +105,7 @@ def plot_absolute_ranks(data):
         count_data[valid_cols].plot(kind='bar', stacked=True, ax=ax,
                                     color=[color_map[c] for c in valid_cols])
         ax.set_title(f"{title} Rank por Regional")
+        ax.legend('')
         ax.set_xlabel('')
         ax.set_ylabel('')
         ax.set_xticklabels(count_data.index, rotation=45)
@@ -142,6 +143,7 @@ def plot_percentage_ranks(data):
         pct_data[valid_cols].plot(kind='bar', stacked=True, ax=ax,
                                   color=[color_map[c] for c in valid_cols])
         ax.set_title(f"{title} Rank (%) por Regional")
+        ax.legend('') 
         ax.set_xlabel('')
         ax.set_ylabel('')
         ax.set_xticklabels(pct_data.index, rotation=45)
