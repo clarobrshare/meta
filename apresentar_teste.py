@@ -37,7 +37,7 @@ mapa_valores = st.multiselect("Valores de Rank:", [1, 2, 3, 'No Readiness'], def
 df_mapa = df[df['Tecnologia'] == mapa_tecnologia]
 
 def create_map(data, rank_col, valores):
-    mapa = folium.Map(location=[data['Latitude'].mean(), data['Longitude'].mean()], zoom_start=5)
+    mapa = folium.Map(location=[data['Latitude'].mean(), data['Longitude'].mean()], zoom_start=8)
     for _, row in data.iterrows():
         rank = row[rank_col]
         if rank in valores:
@@ -59,7 +59,7 @@ st_folium(create_map(df_mapa, mapa_rank, mapa_valores), width=1000, height=500)
 # ===================================================================
 # 2. TABELA ESTILIZADA COM FILTRO PRÓPRIO
 # ===================================================================
-st.header("📋 Tabela de Readiness - Capitais")
+st.header("📋 Ranking % Readiness - Capitais")
 
 tabela_tecnologia = st.selectbox("Tecnologia (Tabela):", sorted(df['Tecnologia'].dropna().unique()), key="tab_tec")
 
