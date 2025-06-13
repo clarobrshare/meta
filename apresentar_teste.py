@@ -24,7 +24,7 @@ color_map = {1: 'green', 2: 'orange', 3: 'red', 'No Readiness': 'black'}
 # ===================================================================
 # 1. MAPA INTERATIVO COM FILTROS PRÓPRIOS
 # ===================================================================
-st.header("📍 Mapa de Ranks")
+st.header("📍 Mapa do Ranking ")
 
 col1, col2 = st.columns(2)
 with col1:
@@ -87,7 +87,7 @@ st.dataframe(
 # ===================================================================
 # 3. GRÁFICO ABSOLUTO COM FILTRO PRÓPRIO
 # ===================================================================
-st.header("📊 Quantidade de Ranks por Regional")
+st.header("📊 # Ranking por Regional")
 
 grafico_tecnologia = st.selectbox("Tecnologia (Gráfico Absoluto):", sorted(df['Tecnologia'].dropna().unique()), key="graf_tec")
 df_graf = df[df['Tecnologia'] == grafico_tecnologia]
@@ -122,7 +122,7 @@ plot_absolute_ranks(df_graf)
 # ===================================================================
 # 4. GRÁFICO PERCENTUAL COM FILTRO PRÓPRIO
 # ===================================================================
-st.header("📈 Porcentagem de Ranks por Regional")
+st.header("📈 % Ranking por Regional")
 
 percent_tecnologia = st.selectbox("Tecnologia (Gráfico Percentual):", sorted(df['Tecnologia'].dropna().unique()), key="pct_tec")
 df_pct = df[df['Tecnologia'] == percent_tecnologia]
