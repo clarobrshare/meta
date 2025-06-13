@@ -108,6 +108,11 @@ def plot_absolute_ranks(data):
         ax.set_xlabel('')
         ax.set_ylabel('')
         ax.set_xticklabels(count_data.index, rotation=45)
+    
+    # Adiciona uma única legenda acima dos subplots
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.05), loc='upper center', ncol=3)
+    
     plt.tight_layout()
     st.pyplot(fig)
 
@@ -140,8 +145,12 @@ def plot_percentage_ranks(data):
         ax.set_xlabel('')
         ax.set_ylabel('')
         ax.set_xticklabels(pct_data.index, rotation=45)
-        ax.legend(title="Rank", bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout(rect=[0, 0, 0.85, 1])
+
+    # Adiciona uma única legenda acima dos subplots
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.05), loc='upper center', ncol=3)
+    
+    plt.tight_layout(rect=[0, 0, 0.85, 1.2])
     st.pyplot(fig)
 
 plot_percentage_ranks(df_pct)
