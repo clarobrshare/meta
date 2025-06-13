@@ -37,7 +37,7 @@ mapa_valores = st.multiselect("Valores de Rank:", [1, 2, 3, 'No Readiness'], def
 df_mapa = df[df['Tecnologia'] == mapa_tecnologia]
 
 def create_map(data, rank_col, valores):
-    mapa = folium.Map(location=[data['Latitude'].mean(), data['Longitude'].mean()], zoom_start=3)
+    mapa = folium.Map(location=[data['Latitude'].mean(), data['Longitude'].mean()], zoom_start=4)
     for _, row in data.iterrows():
         rank = row[rank_col]
         if rank in valores:
@@ -105,7 +105,8 @@ def plot_absolute_ranks(data):
         count_data[valid_cols].plot(kind='bar', stacked=True, ax=ax,
                                     color=[color_map[c] for c in valid_cols])
         ax.set_title(f"{title} Rank por Regional")
-        ax.set_ylabel("Quantidade")
+        ax.set_xlabel('')
+        ax.set_ylabel('')
         ax.set_xticklabels(count_data.index, rotation=45)
     plt.tight_layout()
     st.pyplot(fig)
@@ -136,7 +137,8 @@ def plot_percentage_ranks(data):
         pct_data[valid_cols].plot(kind='bar', stacked=True, ax=ax,
                                   color=[color_map[c] for c in valid_cols])
         ax.set_title(f"{title} Rank (%) por Regional")
-        ax.set_ylabel("Porcentagem")
+        ax.set_xlabel('')
+        ax.set_ylabel('')
         ax.set_xticklabels(pct_data.index, rotation=45)
         ax.legend(title="Rank", bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout(rect=[0, 0, 0.85, 1])
