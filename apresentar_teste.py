@@ -37,7 +37,7 @@ mapa_valores = st.multiselect("Valores de Rank:", [1, 2, 3, 'No Readiness'], def
 df_mapa = df[df['Tecnologia'] == mapa_tecnologia]
 
 def create_map(data, rank_col, valores):
-    mapa = folium.Map(location=[data['Latitude'].mean(), data['Longitude'].mean()], zoom_start=5)
+    mapa = folium.Map(location=[data['Latitude'].mean(), data['Longitude'].mean()], zoom_start=3)
     for _, row in data.iterrows():
         rank = row[rank_col]
         if rank in valores:
