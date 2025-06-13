@@ -90,15 +90,7 @@ st.dataframe(
 st.header("📊 # Ranking por Regional")
 
 grafico_tecnologia = st.selectbox("Tecnologia (Gráfico Absoluto):", sorted(df['Tecnologia'].dropna().unique()), key="graf_tec")
-excluir_no_readiness = st.selectbox("Excluir 'No Readiness'?", ['Sim', 'Não'], key="excluir_no_readiness")
-
 df_graf = df[df['Tecnologia'] == grafico_tecnologia]
-
-# Filtra para remover "No Readiness" se necessário
-if excluir_no_readiness == 'Sim':
-    df_graf = df_graf[~df_graf['Claro Rank'].isin(['No Readiness']) &
-                      ~df_graf['Vivo Rank'].isin(['No Readiness']) &
-                      ~df_graf['TIM Rank'].isin(['No Readiness'])]
 
 def plot_absolute_ranks(data):
     count_claro = data.groupby(['Regional', 'Claro Rank']).size().unstack(fill_value=0).reindex(columns=color_map.keys(), fill_value=0)
@@ -106,10 +98,12 @@ def plot_absolute_ranks(data):
     count_tim   = data.groupby(['Regional', 'TIM Rank']).size().unstack(fill_value=0).reindex(columns=color_map.keys(), fill_value=0)
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
-    for ax, count_data, title in zip(axes, [count_claro, count_vivo, count_tim], ['Claro', 'Vivo', 'TIM']):
+    for ax, count_data, title in zip(
+        axes, [count_claro, count_vivo, count_tim], ['Claro', 'Vivo', 'TIM']
+    ):
         valid_cols = [c for c in color_map if c in count_data.columns]
         count_data[valid_cols].plot(kind='bar', stacked=True, ax=ax,
-                                     color=[color_map[c] for c in valid_cols])
+                                    color=[color_map[c] for c in valid_cols])
         ax.set_title(f"{title} Rank por Regional")
         ax.legend('')
         ax.set_xlabel('')
@@ -131,15 +125,7 @@ plot_absolute_ranks(df_graf)
 st.header("📈 % Ranking por Regional")
 
 percent_tecnologia = st.selectbox("Tecnologia (Gráfico Percentual):", sorted(df['Tecnologia'].dropna().unique()), key="pct_tec")
-excluir_no_readiness_pct = st.selectbox("Excluir 'No Readiness'?", ['Sim', 'Não'], key="excluir_no_readiness_pct")
-
 df_pct = df[df['Tecnologia'] == percent_tecnologia]
-
-# Filtra para remover "No Readiness" se necessário
-if excluir_no_readiness_pct == 'Sim':
-    df_pct = df_pct[~df_pct['Claro Rank'].isin(['No Readiness']) &
-                    ~df_pct['Vivo Rank'].isin(['No Readiness']) &
-                    ~df_pct['TIM Rank'].isin(['No Readiness'])]
 
 def plot_percentage_ranks(data):
     def to_pct(df_op):
@@ -150,12 +136,14 @@ def plot_percentage_ranks(data):
     count_tim   = data.groupby(['Regional', 'TIM Rank']).size().unstack(fill_value=0).reindex(columns=color_map, fill_value=0)
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
-    for ax, pct_data, title in zip(axes, [to_pct(count_claro), to_pct(count_vivo), to_pct(count_tim)], ['Claro', 'Vivo', 'TIM']):
+    for ax, pct_data, title in zip(
+        axes, [to_pct(count_claro), to_pct(count_vivo), to_pct(count_tim)], ['Claro', 'Vivo', 'TIM']
+    ):
         valid_cols = [c for c in color_map if c in pct_data.columns]
         pct_data[valid_cols].plot(kind='bar', stacked=True, ax=ax,
                                   color=[color_map[c] for c in valid_cols])
         ax.set_title(f"{title} Rank (%) por Regional")
-        ax.legend('')
+        ax.legend('') 
         ax.set_xlabel('')
         ax.set_ylabel('')
         ax.set_xticklabels(pct_data.index, rotation=45)
@@ -166,7 +154,5 @@ def plot_percentage_ranks(data):
 
     plt.tight_layout(rect=[0, 0, 1, 0.95])  # Ajusta o layout para dar espaço à legenda
     st.pyplot(fig)
-
-plot_percentage_ranks(df_pct)
 
 plot_percentage_ranks(df_pct)
