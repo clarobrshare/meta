@@ -78,12 +78,11 @@ def color_ranks(val):
         return 'background-color: black'
     return ''
 
-# Estilizando a tabela
-styled_df = df_tab.style.applymap(color_ranks, subset=['Claro Rank', 'Vivo Rank', 'TIM Rank']) \
-                         .format({'Claro Readiness (%)': '{:.1f}', 'Vivo Readiness (%)': '{:.1f}', 'TIM Readiness (%)': '{:.1f}'})
-
-# Exibindo a tabela como HTML para remover o índice
-st.markdown(styled_df.render(), unsafe_allow_html=True)
+st.dataframe(
+    df_tab.style
+    .applymap(color_ranks, subset=['Claro Rank', 'Vivo Rank', 'TIM Rank'])
+    .format({'Claro Readiness (%)': '{:.1f}', 'Vivo Readiness (%)': '{:.1f}', 'TIM Readiness (%)': '{:.1f}'})
+)
 
 # ===================================================================
 # 3. GRÁFICO ABSOLUTO COM FILTRO PRÓPRIO
