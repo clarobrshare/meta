@@ -111,7 +111,7 @@ def plot_absolute_ranks(data):
     
     # Adiciona uma única legenda acima dos subplots
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.05), loc='upper center', ncol=3)
+    fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.15), loc='upper center', ncol=3, fontsize='small')
     
     plt.tight_layout()
     st.pyplot(fig)
@@ -148,7 +148,7 @@ def plot_percentage_ranks(data):
 
     # Adiciona uma única legenda acima dos subplots
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.05), loc='upper center', ncol=3)
+    fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.15), loc='upper center', ncol=3, fontsize='small')
     
     plt.tight_layout(rect=[0, 0, 0.85, 1.2])
     st.pyplot(fig)
