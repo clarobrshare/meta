@@ -113,7 +113,7 @@ def plot_absolute_ranks(data):
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, title="Rank", bbox_to_anchor=(0.5, 1.15), loc='upper center', ncol=3, fontsize='small')
     
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0, 0.85, 1.2])
     st.pyplot(fig)
 
 plot_absolute_ranks(df_graf)
