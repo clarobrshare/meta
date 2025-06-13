@@ -67,8 +67,28 @@ df_tab = df[(df['Tecnologia'] == tabela_tecnologia) & (df['Capital'] == 1)].copy
 df_tab = df_tab[['Region', 'Regional', 'Claro Rank', 'Vivo Rank', 'TIM Rank',
                  'Claro Readiness (%)', 'Vivo Readiness (%)', 'TIM Readiness (%)']]
 # Verifica se existe o "-" e separa, caso contrário, mantém o valor original
-df_tab['Region'] = df_tab['Region'].str.split('- ', expand=True)[1].fillna(df_tab['Region'])df_tab['Region'] = df_tab['Region'].str.split('- ').str[1]
+st.header("📋 Ranking % Readiness - Capitais")
+
+tabela_tecnologia = st.selectbox("Tecnologia (Tabela):", sorted(df['Tecnologia'].dropna().unique()), key="tab_tec")
+
+df_tab = df[(df['Tecnologia'] == tabela_tecnologia) & (df['Capital'] == 1)].copy()
+df_tab = df_tab[['Region', 'Regional', 'Claro Rank', 'Vivo Rank', 'TIM Rank',
+                 'Claro Readiness (%)', 'Vivo Readiness (%)', 'TIM Readiness (%)']]
+
+# Atualiza a coluna Region para considerar o caso com e sem "-"
+df_tab['Region'] = df_tab['Region'].str.split('- ', expand=True)[1].fillna(df_tab['Region'])
 df_tab = df_tab.sort_values(by='Regional')
+
+def color_ranks(val):
+    if val == 3:
+        return 'background-color: red'
+    elif val == 1:
+        return 'background-color: green'
+    elif val == 'No Readiness':
+        return 'background-color: black'
+    return ''
+
+# Resto do código...
 
 def color_ranks(val):
     if val == 3:
