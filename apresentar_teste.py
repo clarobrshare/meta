@@ -75,8 +75,8 @@ df_tab = df[(df['Tecnologia'] == tabela_tecnologia) & (df['Capital'] == 1)].copy
 df_tab = df_tab[['Region', 'Regional', 'Claro Rank', 'Vivo Rank', 'TIM Rank',
                  'Claro Readiness (%)', 'Vivo Readiness (%)', 'TIM Readiness (%)']]
 
-# Atualiza a coluna Region para considerar o caso com e sem "-"
-df_tab['Region'] = df_tab['Region'].str.split('- ', expand=True)[1].fillna(df_tab['Region'])
+# Modificando a coluna 'Region' para mostrar apenas o texto após "- "
+df_selected['Region'] = df_selected['Region'].str.split('- ').str[1]
 df_tab = df_tab.sort_values(by='Regional')
 
 def color_ranks(val):
