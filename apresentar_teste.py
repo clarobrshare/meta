@@ -82,6 +82,7 @@ st.dataframe(
     df_tab.style
     .applymap(color_ranks, subset=['Claro Rank', 'Vivo Rank', 'TIM Rank'])
     .format({'Claro Readiness (%)': '{:.1f}', 'Vivo Readiness (%)': '{:.1f}', 'TIM Readiness (%)': '{:.1f}'})
+    .hide_index()  # Remove o índice
 )
 
 # ===================================================================
