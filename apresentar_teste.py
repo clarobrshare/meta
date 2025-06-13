@@ -66,7 +66,7 @@ tabela_tecnologia = st.selectbox("Tecnologia (Tabela):", sorted(df['Tecnologia']
 df_tab = df[(df['Tecnologia'] == tabela_tecnologia) & (df['Capital'] == 1)].copy()
 df_tab = df_tab[['Region', 'Regional', 'Claro Rank', 'Vivo Rank', 'TIM Rank',
                  'Claro Readiness (%)', 'Vivo Readiness (%)', 'TIM Readiness (%)']]
-# df_tab['Region'] = df_tab['Region'].str.split('- ').str[1]
+df_tab['Region'] = df_tab['Region'].str.split('- ').str[1]
 df_tab = df_tab.sort_values(by='Regional')
 
 def color_ranks(val):
